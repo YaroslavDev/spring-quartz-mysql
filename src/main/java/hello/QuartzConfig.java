@@ -34,8 +34,6 @@ public class QuartzConfig {
         SimpleTriggerFactoryBean simpleTriggerFactory = new SimpleTriggerFactoryBean();
         simpleTriggerFactory.setDescription("Just doin' my job!");
         simpleTriggerFactory.setJobDetail(jobDetailFactoryBean.getObject());
-        simpleTriggerFactory.setStartDelay(2000);
-        simpleTriggerFactory.setRepeatInterval(6000);
         simpleTriggerFactory.setMisfireInstruction(SimpleTrigger.MISFIRE_INSTRUCTION_RESCHEDULE_NEXT_WITH_REMAINING_COUNT);
         return simpleTriggerFactory;
     }
@@ -57,14 +55,6 @@ public class QuartzConfig {
         schedulerFactory.setJobFactory(jobFactory);
         schedulerFactory.setApplicationContextSchedulerContextKey("applicationContext");
         schedulerFactory.setTriggers(simpleTriggerFactoryBean.getObject());
-//        Properties quartzProps = new Properties();
-//        quartzProps.put("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX");
-//        quartzProps.put("org.quartz.dataSource.quartzDataSource.driver", "com.mysql.jdbc.Driver");
-//        quartzProps.put("org.quartz.dataSource.quartzDataSource.URL", "jdbc:mysql://localhost:3306/quartz");
-//        quartzProps.put("org.quartz.dataSource.quartzDataSource.user", "root");
-//        quartzProps.put("org.quartz.dataSource.quartzDataSource.password", "mysql");
-//        quartzProps.put("org.quartz.dataSource.quartzDataSource.maxConnections", "2");
-//        schedulerFactory.setQuartzProperties(quartzProps);
         return schedulerFactory;
     }
 }
